@@ -7,7 +7,7 @@ import CardComponent from "./components/Cards/CardComponent";
 function App() {
   const [items, setItems] = useState([]);
   const BASE_URL = "https://hp-api.onrender.com/api/characters";
-  const MAX_ITEMS = 30;
+  const MAX_ITEMS = 20;
 
   useEffect(() => {
     fetch(BASE_URL)
