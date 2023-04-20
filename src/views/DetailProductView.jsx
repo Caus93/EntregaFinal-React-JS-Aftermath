@@ -2,7 +2,6 @@ import React from "react";
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../utils/useFetch";
-import CardComponent from "../components/Cards/CardComponent";
 
 const BASE_URL = "https://hp-api.onrender.com/api/characters";
 
