@@ -1,20 +1,21 @@
 import React from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
 import CartWidget from "./CartWidget/CartWidget";
+import { NavLink } from "react-router-dom";
 
 const NavBarComponent = (props) => {
   const nameOptions = ["Inicio", "Cards", "Hogwarts", "Nosotros"];
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <span className="navbar-brand">
+        <NavLink className="navbar-brand" to="/">
           <img
             width={100}
             height={80}
             src="https://st.depositphotos.com/14715994/57683/v/600/depositphotos_576839106-stock-illustration-boy-glasses-cartoon-icon-vector.jpg"
             alt=""
           />
-        </span>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
