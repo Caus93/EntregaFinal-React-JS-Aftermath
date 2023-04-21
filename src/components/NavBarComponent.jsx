@@ -1,17 +1,10 @@
 import React from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
 import CartWidget from "./CartWidget/CartWidget";
-import { NavLink, useParams } from "react-router-dom";
-import useFetch from "../utils/useFetch";
-
-const BASE_URL = "https://hp-api.onrender.com/api/characters";
+import { NavLink } from "react-router-dom";
 
 const NavBarComponent = (props) => {
   const houses = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"];
-  const selectedHouse = useParams().house;
-  const [data] = useFetch(BASE_URL);
-  const data2 = data.filter((item) => item.house.includes(selectedHouse));
-  console.log(data2);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
