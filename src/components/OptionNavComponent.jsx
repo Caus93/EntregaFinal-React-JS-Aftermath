@@ -1,8 +1,13 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const OptionNavComponent = (props) => {
   const { titleOption } = props;
-  return <span className="nav-link ">{titleOption}</span>;
+  return (
+    <NavLink to={`/characters/houses/${titleOption}`}>
+      <span className="nav-link ">{titleOption}</span>
+    </NavLink>
+  );
 };
 
 export default OptionNavComponent;

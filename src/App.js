@@ -5,6 +5,7 @@ import ItemComponentList from "./components/ItemComponentList/ItemComponentList"
 import ProductsView from "./views/ProductsView";
 import DetailProductView from "./views/DetailProductView";
 import { routes } from "./routes";
+import HousesView from "./views/HousesView";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route
           path={routes.detailProductView}
           element={<DetailProductView />}
+        ></Route>
+        <Route
+          path="/characters/houses/:house"
+          element={<HousesView />}
         ></Route>
       </Routes>
     </BrowserRouter>

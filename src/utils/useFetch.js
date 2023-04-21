@@ -14,7 +14,6 @@ const useFetch = (url) => {
         return response.json();
       })
       .then((infoJson) => {
-        console.log(infoJson);
         setData(infoJson);
         setLoading(false);
       })

@@ -3,13 +3,12 @@ import { Fragment } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import useFetch from "../utils/useFetch";
 
-const BASE_URL = "https://hp-api.onrender.com/api/characters";
+const BASE_URL = "https://hp-api.onrender.com/api/characters/house/";
+const MAX_ITEMS = 8;
 
-const DetailProductView = () => {
-  const { idCharacter } = useParams();
-  const [data, loading] = useFetch(BASE_URL);
-
-  const data2 = data.filter((character) => character.id.includes(idCharacter));
+const HousesView = () => {
+  const { house } = useParams();
+  const [data, loading] = useFetch(`${BASE_URL}${house}`);
 
   return (
     <Fragment>
@@ -18,7 +17,7 @@ const DetailProductView = () => {
           <h1>Cargando al personaje</h1>
         ) : (
           <div className="row justify-content-center">
-            {data2.map((item, index) => {
+            {data.slice(0, MAX_ITEMS).map((item, index) => {
               return (
                 <div
                   className="card shadow-sm m-5"
@@ -52,4 +51,4 @@ const DetailProductView = () => {
   );
 };
 
-export default DetailProductView;
+export default HousesView;
