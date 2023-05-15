@@ -1,7 +1,8 @@
 import React from "react";
 import { Fragment } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "../utils/useFetch";
+import ItemCount from "../components/ItemCount/ItemCount";
 
 const BASE_URL = "https://hp-api.onrender.com/api/characters";
 
@@ -36,11 +37,13 @@ const DetailProductView = () => {
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">{item.house}</p>
                     <p className="card-text text-muted">{item.actor}</p>
-                    <NavLink to={`/`}>
-                      <button className="btn btn-success btn-sm">
-                        Adquirir Personaje
-                      </button>
-                    </NavLink>
+                    <ItemCount
+                      initial={1}
+                      stock={10}
+                      onAdd={(quantity) =>
+                        console.log(`Cantidad agregada`, quantity)
+                      }
+                    ></ItemCount>
                   </div>
                 </div>
               );
