@@ -1,11 +1,16 @@
 import React from "react";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const CardComponent = (props) => {
   const { data } = props;
   const { id: idCharacter, name, actor, house, image } = data;
+  const { removeItem } = useContext(CartContext);
 
+  const removeThisItem = () => {
+    removeItem(data);
+  };
   return (
     <Fragment>
       <div className="card shadow-sm m-5" style={{ width: "18rem" }}>
@@ -23,6 +28,12 @@ const CardComponent = (props) => {
           <NavLink to={`/characters/detail/${idCharacter}`}>
             <button className="btn btn-success btn-sm">Más detalles</button>
           </NavLink>
+          <button
+            className="btn btn-danger btn-sm m-2"
+            onClick={() => removeThisItem()}
+          >
+            X
+          </button>
         </div>
       </div>
     </Fragment>

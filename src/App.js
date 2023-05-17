@@ -6,20 +6,11 @@ import ProductsView from "./views/ProductsView";
 import DetailProductView from "./views/DetailProductView";
 import { routes } from "./routes";
 import HousesView from "./views/HousesView";
-/* import GeneralContext from "./context/GeneralContext"; */
 import { CartProvider } from "./context/CartContext";
 import DetailCarView from "./views/DetailCarView";
 
 function App() {
-  /*   const [counter, setCounter] = useState(0);
-
-  const updateCounter = () => {
-    setCounter(counter);
-  };
-
-  console.log(counter); */
   return (
-    /*     <GeneralContext.Provider> */
     <BrowserRouter>
       <CartProvider>
         <NavBarComponent />
@@ -38,7 +29,6 @@ function App() {
         </Routes>
       </CartProvider>
     </BrowserRouter>
-    /*     </GeneralContext.Provider> */
   );
 }
 

@@ -13,7 +13,6 @@ const DetailProductView = () => {
 
   const [quantityAdded, setQuantityAdded] = useState(0);
   const { addItem } = useContext(CartContext);
-  /*   const { updateCounter } = useContext(GeneralContext); */
 
   const [data, loading] = useFetch(BASE_URL);
   const data2 = data.filter((character) => character.id.includes(idCharacter));
