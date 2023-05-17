@@ -17,7 +17,7 @@ const ProductsView = (props) => {
             {data.slice(0, MAX_ITEMS).map((item, index) => {
               return (
                 <div className="col-4" key={index}>
-                  <CardComponent data={item} />
+                  <CardComponent showInfoBtn={true} data={item} />
                 </div>
               );
             })}

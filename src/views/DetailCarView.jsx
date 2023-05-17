@@ -8,9 +8,13 @@ const DetailCarView = () => {
   return (
     <Fragment>
       <div className="container">
-        {cart.map((item, index) => (
-          <CardComponent key={index} data={item} />
-        ))}
+        {cart.length === 0 ? (
+          <h1>No hay personajes agregados en el carrito</h1>
+        ) : (
+          cart.map((item, index) => (
+            <CardComponent showRemoveBtn={true} key={index} data={item} />
+          ))
+        )}
       </div>
     </Fragment>
   );
