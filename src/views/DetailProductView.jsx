@@ -1,16 +1,34 @@
-import React from "react";
-import { Fragment } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext /* , { useContext } */ } from "react";
+import { Fragment, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 import useFetch from "../utils/useFetch";
 import ItemCount from "../components/ItemCount/ItemCount";
+import { CartContext } from "../context/CartContext";
+/* import GeneralContext from "../context/GeneralContext"; */
 
 const BASE_URL = "https://hp-api.onrender.com/api/characters";
 
 const DetailProductView = () => {
   const { idCharacter } = useParams();
-  const [data, loading] = useFetch(BASE_URL);
 
+  const [quantityAdded, setQuantityAdded] = useState(0);
+  const { addItem } = useContext(CartContext);
+  /*   const { updateCounter } = useContext(GeneralContext); */
+
+  const [data, loading] = useFetch(BASE_URL);
   const data2 = data.filter((character) => character.id.includes(idCharacter));
+
+  const handleOnAdd = (quantity) => {
+    setQuantityAdded(quantity);
+
+    const selectedItem = data2.find((item) => item.id === idCharacter);
+
+    if (selectedItem) {
+      const { id, name, image } = selectedItem;
+      const item = { idCharacter: id, name, image, quantity };
+      addItem(item, quantity);
+    }
+  };
 
   return (
     <Fragment>
@@ -37,13 +55,19 @@ const DetailProductView = () => {
                     <h5 className="card-title">{item.name}</h5>
                     <p className="card-text">{item.house}</p>
                     <p className="card-text text-muted">{item.actor}</p>
-                    <ItemCount
-                      initial={1}
-                      stock={10}
-                      onAdd={(quantity) =>
-                        console.log(`Cantidad agregada`, quantity)
-                      }
-                    ></ItemCount>
+                    {quantityAdded > 0 ? (
+                      <NavLink to={"/products/car"} className="option">
+                        <button className="btn btn-success btn-sm">
+                          Terminar Compra
+                        </button>
+                      </NavLink>
+                    ) : (
+                      <ItemCount
+                        initial={1}
+                        stock={10}
+                        onAdd={handleOnAdd}
+                      ></ItemCount>
+                    )}
                   </div>
                 </div>
               );

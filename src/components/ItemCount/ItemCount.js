@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [quantity, setQuantity] = useState(initial);
@@ -29,15 +28,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         </button>
       </div>
       <div>
-        <NavLink to={`/`}>
-          <button
-            className="btn btn-success btn-sm"
-            onClick={() => onAdd(quantity)}
-            disabled={!stock}
-          >
-            Agregar al Carrito
-          </button>
-        </NavLink>
+        <button
+          className="btn btn-success btn-sm"
+          onClick={() => onAdd(quantity)}
+          disabled={!stock}
+        >
+          Agregar al Carrito
+        </button>
       </div>
     </div>
   );
