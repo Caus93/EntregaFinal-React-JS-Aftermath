@@ -1,6 +1,6 @@
 import React from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
-import CartWidget from "./CartWidget/CartWidget";
+import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
 
 const NavBarComponent = (props) => {
