@@ -14,7 +14,7 @@ const DetailProductView = () => {
   const { addItem } = useContext(CartContext);
 
   const [data, loading] = useFireStore({ nameCollection, idCharacter });
-  const { name, actor, house, price, image, quantity } = data;
+  const { name, actor, house, price, image, gender /* quantity */ } = data;
 
   const handleOnAdd = (quantity) => {
     setQuantityAdded(quantity);
@@ -40,6 +40,7 @@ const DetailProductView = () => {
                 <h5 className="card-title">{name}</h5>
                 <p className="card-text">{house}</p>
                 <p className="card-text text-muted">{actor}</p>
+                <p className="card-text text-muted">{gender}</p>
                 <p className="card-text text-muted">{price}</p>
                 {quantityAdded > 0 ? (
                   <NavLink to={"/"} className="option">

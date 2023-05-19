@@ -1,7 +1,7 @@
-import React, { Fragment, useContext } from "react";
-import CardComponent from "../components/Cards/CardComponent";
-import { CartContext } from "../context/CartContext";
+import React, { Fragment } from "react";
 import BuyComponent from "../components/BuyComponent/BuyComponent";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const DetailCarView = () => {
   const { cart } = useContext(CartContext);
@@ -12,9 +12,7 @@ const DetailCarView = () => {
         {cart.length === 0 ? (
           <h1>No hay personajes agregados en el carrito</h1>
         ) : (
-          cart.map((item, index) => (
-            <BuyComponent showRemoveBtn={true} key={index} data={item} />
-          ))
+          <BuyComponent showRemoveBtn={true} />
         )}
       </div>
     </Fragment>
