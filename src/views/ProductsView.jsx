@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import CardComponent from "../components/Cards/CardComponent";
-import useFetch from "../utils/useFetch";
-const BASE_URL = "https://hp-api.onrender.com/api/characters";
+import useFireStore from "../utils/useFireStore";
 const MAX_ITEMS = 18;
 
+const nameCollection = "items";
+
 const ProductsView = (props) => {
-  const [data, loading] = useFetch(BASE_URL);
+  const [data, loading] = useFireStore({ nameCollection });
 
   return (
     <Fragment>

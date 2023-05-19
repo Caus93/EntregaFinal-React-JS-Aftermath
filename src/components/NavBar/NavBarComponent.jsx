@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
+import useFireStore from "../../utils/useFireStore";
+import { CartContext } from "../../context/CartContext";
+
+const nameCollection = "houses";
 
 const NavBarComponent = (props) => {
-  const houses = ["Gryffindor", "Slytherin", "Hufflepuff", "Ravenclaw"];
+  const { quantity } = useContext(CartContext);
+  const [data] = useFireStore({ nameCollection });
+  const dataProcess = useMemo(() => {
+    const categoriesObject = data.length !== 0 ? data[0] : [];
+    return "houses" in categoriesObject ? categoriesObject.houses : [];
+  }, [data]);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -29,9 +38,9 @@ const NavBarComponent = (props) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <DivOptionNavComponent data={houses} />
+          <DivOptionNavComponent data={dataProcess} />
 
-          <CartWidget />
+          <CartWidget quantity={quantity} />
         </div>
       </div>
     </nav>

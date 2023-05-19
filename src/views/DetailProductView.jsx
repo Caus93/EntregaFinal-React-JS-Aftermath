@@ -1,12 +1,11 @@
 import React, { useContext /* , { useContext } */ } from "react";
 import { Fragment, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import useFetch from "../utils/useFetch";
+import useFireStore from "../utils/useFireStore";
 import ItemCount from "../components/ItemCount/ItemCount";
 import { CartContext } from "../context/CartContext";
-/* import GeneralContext from "../context/GeneralContext"; */
 
-const BASE_URL = "https://hp-api.onrender.com/api/characters";
+const nameCollection = "items";
 
 const DetailProductView = () => {
   const { idCharacter } = useParams();
@@ -14,19 +13,12 @@ const DetailProductView = () => {
   const [quantityAdded, setQuantityAdded] = useState(0);
   const { addItem } = useContext(CartContext);
 
-  const [data, loading] = useFetch(BASE_URL);
-  const data2 = data.filter((character) => character.id.includes(idCharacter));
+  const [data, loading] = useFireStore({ nameCollection, idCharacter });
+  const { name, actor, house, price, image, quantity } = data;
 
   const handleOnAdd = (quantity) => {
     setQuantityAdded(quantity);
-
-    const selectedItem = data2.find((item) => item.id === idCharacter);
-
-    if (selectedItem) {
-      const { id, name, image } = selectedItem;
-      const item = { idCharacter: id, name, image, quantity };
-      addItem(item, quantity);
-    }
+    addItem(data, quantity);
   };
 
   return (
@@ -36,41 +28,32 @@ const DetailProductView = () => {
           <h1>Cargando al personaje</h1>
         ) : (
           <div className="row justify-content-center">
-            {data2.map((item, index) => {
-              return (
-                <div
-                  className="card shadow-sm m-5"
-                  key={index}
-                  style={{ width: "20rem" }}
-                >
-                  <img
-                    width={200}
-                    height={300}
-                    src={item.image}
-                    className="card-img-top pt-3"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{item.name}</h5>
-                    <p className="card-text">{item.house}</p>
-                    <p className="card-text text-muted">{item.actor}</p>
-                    {quantityAdded > 0 ? (
-                      <NavLink to={"/products/car"} className="option">
-                        <button className="btn btn-success btn-sm">
-                          Terminar Compra
-                        </button>
-                      </NavLink>
-                    ) : (
-                      <ItemCount
-                        initial={1}
-                        stock={10}
-                        onAdd={handleOnAdd}
-                      ></ItemCount>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+            <div className="card shadow-sm m-5" style={{ width: "20rem" }}>
+              <img
+                width={200}
+                height={300}
+                src={image}
+                className="card-img-top pt-3"
+                alt=""
+              />
+              <div className="card-body">
+                <h5 className="card-title">{name}</h5>
+                <p className="card-text">{house}</p>
+                <p className="card-text text-muted">{actor}</p>
+                <p className="card-text text-muted">{price}</p>
+                {quantityAdded > 0 ? (
+                  <NavLink to={"/"} className="option">
+                    <button className="btn btn-success btn-sm">Volver</button>
+                  </NavLink>
+                ) : (
+                  <ItemCount
+                    initial={1}
+                    stock={10}
+                    onAdd={handleOnAdd}
+                  ></ItemCount>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -25,7 +25,7 @@ function App() {
             path="/characters/houses/:house"
             element={<HousesView />}
           ></Route>
-          <Route path="/products/car" element={<DetailCarView />}></Route>
+          <Route path="/cart" element={<DetailCarView />}></Route>
         </Routes>
       </CartProvider>
     </BrowserRouter>
