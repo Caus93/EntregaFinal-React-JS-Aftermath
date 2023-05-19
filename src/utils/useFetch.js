@@ -1,28 +1,46 @@
 import { useEffect, useState } from "react";
 
+const initialState = {
+  response: {},
+  error: {},
+  data: [],
+  loading: false,
+};
+
 const useFetch = (url) => {
-  const [response, setResponse] = useState({});
-  const [error, setError] = useState({});
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState(initialState);
 
   useEffect(() => {
-    setLoading(true);
     fetch(url)
       .then((response) => {
-        setResponse(response);
         return response.json();
       })
       .then((infoJson) => {
-        setData(infoJson);
-        setLoading(false);
+        setState({ ...state, data: infoJson, loading: false });
       })
       .catch((_error) => {
-        setError(_error);
+        setState(_error);
       });
   }, [url]);
 
-  return [data, loading, response, error];
+  return [state.data, state.loading, state.response, state.error];
 };
 
 export default useFetch;
+
+/* 
+useEffect(() => {
+  setLoading(true);
+  fetch(url)
+    .then((response) => {
+      setResponse(response);
+      return response.json();
+    })
+    .then((infoJson) => {
+      setData(infoJson);
+      setLoading(false);
+    })
+    .catch((_error) => {
+      setError(_error);
+    });
+}, [url]); */
