@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
-import useFireStore from "../../utils/useFireStore";
+
 import { CartContext } from "../../context/CartContext";
 
 const nameCollection = "houses";
