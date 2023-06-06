@@ -1,7 +1,7 @@
 import React, { useContext /* , { useContext } */ } from "react";
 import { Fragment, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-
+import useFireStore from "../utils/useFireStore";
 import ItemCount from "../components/ItemCount/ItemCount";
 import { CartContext } from "../context/CartContext";
 

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import CardComponent from "../components/Cards/CardComponent";
-
+import useFireStore from "../utils/useFireStore";
 const MAX_ITEMS = 18;
 
 const nameCollection = "items";
