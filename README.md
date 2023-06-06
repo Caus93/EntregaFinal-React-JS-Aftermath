@@ -1,4 +1,4 @@
-# Ventas de Personajes en Cartas de Harry Potter
+# Ventas de Personajes de Harry Potter en Cartas
 
 ### Sitio enfocado en los personajes de Harry Potter para colección.
 
