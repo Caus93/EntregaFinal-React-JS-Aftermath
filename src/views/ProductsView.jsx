@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import CardComponent from "../components/Cards/CardComponent";
-import useFireStore from "../utils/useFireStore";
+import useFirestore from "../utils/useFirestore";
 const MAX_ITEMS = 18;
 
 const nameCollection = "items";
 
 const ProductsView = (props) => {
-  const [data, loading] = useFireStore({ nameCollection });
+  const [data, loading] = useFirestore({ nameCollection });
 
   return (
     <Fragment>

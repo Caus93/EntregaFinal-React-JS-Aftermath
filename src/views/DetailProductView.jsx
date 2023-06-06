@@ -1,7 +1,7 @@
 import React, { useContext /* , { useContext } */ } from "react";
 import { Fragment, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import useFireStore from "../utils/useFireStore";
+import useFirestore from "../utils/useFirestore";
 import ItemCount from "../components/ItemCount/ItemCount";
 import { CartContext } from "../context/CartContext";
 
@@ -13,7 +13,7 @@ const DetailProductView = () => {
   const [quantityAdded, setQuantityAdded] = useState(0);
   const { addItem } = useContext(CartContext);
 
-  const [data, loading] = useFireStore({ nameCollection, idCharacter });
+  const [data, loading] = useFirestore({ nameCollection, idCharacter });
   const { name, actor, house, price, image, gender /* quantity */ } = data;
 
   const handleOnAdd = (quantity) => {

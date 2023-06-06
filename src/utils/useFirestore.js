@@ -22,7 +22,7 @@ const filtersFuntions = {
   limit,
 };
 
-const useFireStore = ({ nameCollection = "", idCharacter, filters }) => {
+const useFirestore = ({ nameCollection = "", idCharacter, filters }) => {
   const [state, setState] = useState(initialState);
 
   const listFilters = useMemo(() => {
@@ -59,4 +59,4 @@ const useFireStore = ({ nameCollection = "", idCharacter, filters }) => {
   return [state.data, state.loading, state.response, state.error];
 };
 
-export default useFireStore;
+export default useFirestore;

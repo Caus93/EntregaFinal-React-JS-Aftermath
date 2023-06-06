@@ -2,14 +2,14 @@ import React, { useContext, useMemo } from "react";
 import DivOptionNavComponent from "./DivOptionNavComponent";
 import CartWidget from "../CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
-import useFireStore from "../../utils/useFireStore";
+import useFirestore from "../../utils/useFirestore";
 import { CartContext } from "../../context/CartContext";
 
 const nameCollection = "houses";
 
 const NavBarComponent = (props) => {
   const { quantity } = useContext(CartContext);
-  const [data] = useFireStore({ nameCollection });
+  const [data] = useFirestore({ nameCollection });
   const dataProcess = useMemo(() => {
     const categoriesObject = data.length !== 0 ? data[0] : [];
     return "houses" in categoriesObject ? categoriesObject.houses : [];
